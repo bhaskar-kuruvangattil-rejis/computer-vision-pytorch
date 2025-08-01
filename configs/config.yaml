@@ -1,0 +1,100 @@
+# Configuration file for computer vision project
+
+# Dataset configuration
+dataset:
+  name: "CIFAR10"  # Options: CIFAR10, CIFAR100, MNIST, custom
+  data_dir: "./data/raw"
+  input_size: [224, 224]  # [height, width]
+  num_classes: 10
+  class_names: 
+    - "airplane"
+    - "automobile"
+    - "bird"
+    - "cat"
+    - "deer"
+    - "dog"
+    - "frog"
+    - "horse"
+    - "ship"
+    - "truck"
+
+# Data loading configuration
+dataloader:
+  batch_size: 32
+  num_workers: 4
+  shuffle_train: true
+  pin_memory: true
+
+# Data augmentation
+augmentation:
+  enabled: true
+  horizontal_flip: 0.5
+  rotation_degrees: 10
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.1
+
+# Model configuration
+model:
+  name: "SimpleCNN"  # Options: SimpleCNN, SimpleResNet
+  input_channels: 3
+  num_classes: 10
+  pretrained: false
+
+# Training configuration
+training:
+  epochs: 50
+  learning_rate: 0.001
+  optimizer: "adam"  # Options: adam, sgd, rmsprop, adamw
+  optimizer_params:
+    weight_decay: 0.0001
+  
+  # Learning rate scheduler
+  scheduler:
+    name: "step"  # Options: step, cosine, exponential, plateau
+    step_size: 20
+    gamma: 0.1
+  
+  # Loss function
+  criterion: "CrossEntropyLoss"
+  
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 10
+    min_delta: 0.001
+
+# Validation configuration
+validation:
+  split_ratio: 0.2  # For splitting training data into train/val
+  eval_frequency: 1  # Evaluate every N epochs
+
+# Hardware configuration
+hardware:
+  device: "auto"  # Options: auto, cuda, cpu
+  mixed_precision: false
+
+# Logging and saving
+logging:
+  log_frequency: 100  # Log every N batches
+  save_best_model: true
+  save_last_model: true
+  model_save_dir: "./results/models"
+  log_dir: "./results/logs"
+  figure_save_dir: "./results/figures"
+
+# Experiment tracking
+experiment:
+  name: "cifar10_classification"
+  description: "Basic CIFAR-10 image classification experiment"
+  tags: ["cifar10", "cnn", "pytorch"]
+
+# Visualization
+visualization:
+  plot_training_history: true
+  plot_confusion_matrix: true
+  visualize_predictions: true
+  save_sample_images: true
+  num_prediction_samples: 16
