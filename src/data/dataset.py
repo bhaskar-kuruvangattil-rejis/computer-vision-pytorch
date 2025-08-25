@@ -42,6 +42,7 @@ class CustomImageDataset(Dataset):
         self.transform = transform
     
     def __len__(self):
+        """TODO: Add description for __len__"""
         return len(self.data_frame)
     
     def __getitem__(self, idx):
