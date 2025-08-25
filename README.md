@@ -38,3 +38,12 @@ This project aims to solve a computer vision problem using PyTorch as the primar
 - matplotlib
 
 Add further libraries as needed.
+
+
+## Examples
+
+```python
+# Basic usage example
+print("Hello, World!")
+```
+
